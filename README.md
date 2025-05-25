@@ -113,3 +113,5 @@ LinkedIn: [abderrahim-jridi](https://www.linkedin.com/in/abderrahim-jridi/)
 - Créer des vues hiérarchiques (drill-down) des KPIs
 - Publier le rapport sur Power BI Service pour partage ou intégration
 ---
+
+![Dashboard Preview](./screenshot.png)
