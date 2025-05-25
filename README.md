@@ -1,60 +1,115 @@
-# Analyse-des-Ventes-
+# 📊 Suivi de la Performance des Départements – Projet Power BI
 
-🎯 Objectif global du projet
-Créer un tableau de bord interactif pour suivre les performances mensuelles de plusieurs départements (Ventes, IT, RH, etc.) dans une entreprise fictive.
+Ce projet Power BI permet de visualiser et d’analyser la performance mensuelle de plusieurs départements pour l’année 2023. Il met l’accent sur la comparaison entre les objectifs et les résultats réalisés, le suivi d’indicateurs clés de performance (KPI), et la présentation des informations dans un tableau de bord clair et interactif adapté aux besoins métier.
 
-📌 Objectifs détaillés (étapes à réaliser)
-1. Préparation des données
-Charger le fichier Excel (celui que je t’ai partagé) dans Power BI.
+---
 
-Vérifier et nettoyer les données si besoin (format des dates, cohérence des chiffres, etc.).
+## 🧾 Jeu de Données
 
-2. Modélisation des données
-Créer une table calendrier (si tu veux faire des filtres par mois/année).
+Les données utilisées dans ce projet ont été créées manuellement pour simuler un environnement métier réaliste. Elles comprennent :
 
-S’assurer que les types de données sont corrects (dates, numériques, texte).
+- **Date** : Premier jour de chaque mois en 2023 (de janvier à décembre)
+- **Département** : Unités simulées (Ventes, Marketing, RH, IT, Finance)
+- **Objectif** : Valeur cible mensuelle définie pour chaque département
+- **Réalisé** : Valeur effectivement atteinte par chaque département
 
-Créer les relations si nécessaire (pas forcément utile ici car tout est déjà dans une seule table).
+Une table de calendrier a été générée directement dans Power BI via DAX pour permettre les découpages temporels et les fonctions d’intelligence temporelle.
 
-3. Création des indicateurs / mesures (avec DAX)
-Écart Objectif vs Réalisé = Réalisé - Objectif
+---
 
-% de réalisation = Réalisé / Objectif
+## ⚙️ Fonctionnalités
 
-Moyenne mobile ou cumul mensuel si tu veux aller plus loin.
+- **Cartes KPI** :
+  - Total Réalisé
+  - Objectif Total
+  - % de Réalisation (avec formatage en pourcentage)
+  - Écart de Performance (optionnel)
 
-4. Visualisations
-Crée plusieurs éléments visuels pour répondre aux objectifs :
+- **Vue Matricielle** :
+  - % de Réalisation par Département et Mois (de Jan à Déc)
+  - Tri chronologique correct via la colonne `MonthNumber`
+  - Mise en forme conditionnelle pour mettre en évidence les sous/sur-performances
 
-Barres comparatives Objectif vs Réalisé par mois et par département.
+- **Graphiques** :
+  - **Graphique en barres** : Comparaison mensuelle Réalisé vs Objectif
+  - **Graphique en ligne** : Évolution des performances réalisées
+  - **Graphique en colonnes** : Écart de performance par département
 
-KPI cards :
+- **Filtres (Slicers)** :
+  - Par Département
+  - Par Mois
 
-Total Réalisé
+---
 
-Total Objectif
+## 📐 Outils Utilisés
 
-Moyenne du taux d’absentéisme
+- Power BI Desktop (Microsoft)
+- DAX pour les mesures et calculs
+- Excel (préparation initiale des données)
 
-Moyenne du taux de turnover
+---
 
-Graphique en ligne : évolution mensuelle d’un indicateur.
+## 🧠 Mesures DAX Clés
 
-Segmentations/Filtres : mois, département.
+```DAX
+Total Objective = SUM(PerformanceData[Objective])
+Total Realized = SUM(PerformanceData[Realized])
+% Realization = DIVIDE([Total Realized], [Total Objective])
+Performance Gap = [Total Realized] - [Total Objective]
+```
 
-5. Interactions
-Rendre tous les visuels interactifs avec les filtres.
+---
 
-Ajouter un slicer pour naviguer facilement par mois ou département.
+## 🧱 Calendar Table
 
-6. Design final
-Harmoniser les couleurs, organiser les visuels en sections claires.
+A dedicated Calendar table was created using the following DAX:
 
-Ajouter des titres lisibles et des légendes si besoin.
+```DAX
+Calendar = 
+ADDCOLUMNS(
+    CALENDAR(DATE(2023,1,1), DATE(2023,12,31)),
+    "Year", YEAR([Date]),
+    "Month", MONTH([Date]),
+    "MonthName", FORMAT([Date], "MMM"),
+    "MonthNumber", MONTH([Date]),
+    "YearMonth", FORMAT([Date], "YYYY-MM"),
+    "Quarter", "T" & FORMAT([Date], "Q"),
+    "Day", DAY([Date])
+)
+```
 
-Masquer les champs inutiles dans le panneau de champs.
+This table allows for chronological sorting of months and accurate slicing by time periods.
 
-7. Export ou publication
-Enregistrer le fichier .pbix.
+---
 
-Si tu veux aller plus loin : publier sur Power BI Service.
+## 🧩 Fichiers Inclus
+
+- `Department_Performance.xlsx` – Données simulées
+- `Department_Performance.pbix` – Fichier Power BI
+- `README.md` – Présentation du projet
+- `screenshot.png` – Aperçu du tableau de bord
+
+---
+
+## 📐 Conception du Tableau de Bord
+
+- Filtres (Slicers) en haut à gauche (Département, Mois)
+- Cartes KPI situées sous les filtres
+- Visualisations principales à droite
+- Mise en forme conditionnelle dans la matrice pour indiquer les performances
+---
+
+## 📬 Contact
+
+**Abderrahim Jridi**  
+Email: jeridi.abderahim@gmail.com  
+LinkedIn: [abderrahim-jridi](https://www.linkedin.com/in/abderrahim-jridi/)
+
+---
+
+## 🚀 Améliorations Futures
+
+- Ajouter des comparaisons annuelles (par exemple : avec des données fictives pour 2022)
+- Créer des vues hiérarchiques (drill-down) des KPIs
+- Publier le rapport sur Power BI Service pour partage ou intégration
+---
