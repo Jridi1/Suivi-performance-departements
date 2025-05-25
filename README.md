@@ -84,10 +84,10 @@ This table allows for chronological sorting of months and accurate slicing by ti
 
 ## 🧩 Fichiers Inclus
 
-- `Department_Performance.xlsx` – Données simulées
-- `Department_Performance.pbix` – Fichier Power BI
+- `Sample.xlsx` – Données simulées
+- `Projet.pbix` – Fichier Power BI
 - `README.md` – Présentation du projet
-- `screenshot.png` – Aperçu du tableau de bord
+- `Aperçu.pdf` – Aperçu du tableau de bord
 
 ---
 
